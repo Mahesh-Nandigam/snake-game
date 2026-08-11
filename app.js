@@ -403,10 +403,17 @@ window.addEventListener('keydown', e => {
 });
 
 // Touch / Mobile Controls
-document.getElementById('dpad-up').addEventListener('pointerdown', () => changeDirection(0, -1));
-document.getElementById('dpad-down').addEventListener('pointerdown', () => changeDirection(0, 1));
-document.getElementById('dpad-left').addEventListener('pointerdown', () => changeDirection(-1, 0));
-document.getElementById('dpad-right').addEventListener('pointerdown', () => changeDirection(1, 0));
+function triggerMove(newDx, newDy) {
+    changeDirection(newDx, newDy);
+    if (navigator.vibrate) {
+        try { navigator.vibrate(10); } catch(e) {}
+    }
+}
+
+document.getElementById('dpad-up').addEventListener('pointerdown', (e) => { e.preventDefault(); triggerMove(0, -1); });
+document.getElementById('dpad-down').addEventListener('pointerdown', (e) => { e.preventDefault(); triggerMove(0, 1); });
+document.getElementById('dpad-left').addEventListener('pointerdown', (e) => { e.preventDefault(); triggerMove(-1, 0); });
+document.getElementById('dpad-right').addEventListener('pointerdown', (e) => { e.preventDefault(); triggerMove(1, 0); });
 
 // Swipe mechanics for mobile
 let touchStartX = 0;
@@ -415,6 +422,10 @@ canvas.addEventListener('touchstart', e => {
     touchStartX = e.changedTouches[0].screenX;
     touchStartY = e.changedTouches[0].screenY;
 }, {passive:true});
+
+canvas.addEventListener('touchmove', e => {
+    if (e.cancelable) e.preventDefault();
+}, {passive:false});
 
 canvas.addEventListener('touchend', e => {
     let touchEndX = e.changedTouches[0].screenX;
@@ -426,12 +437,12 @@ function handleSwipe(startX, startY, endX, endY) {
     const diffX = endX - startX;
     const diffY = endY - startY;
     if (Math.abs(diffX) > Math.abs(diffY)) {
-        if (Math.abs(diffX) > 30) {
-            changeDirection(diffX > 0 ? 1 : -1, 0);
+        if (Math.abs(diffX) > 25) {
+            triggerMove(diffX > 0 ? 1 : -1, 0);
         }
     } else {
-        if (Math.abs(diffY) > 30) {
-            changeDirection(0, diffY > 0 ? 1 : -1);
+        if (Math.abs(diffY) > 25) {
+            triggerMove(0, diffY > 0 ? 1 : -1);
         }
     }
 }
