@@ -20,49 +20,51 @@
             </div>
         </header>
 
-        <!-- Main Canvas -->
-        <canvas id="gameCanvas" width="600" height="600"></canvas>
+        <!-- Canvas Wrapper containing Canvas and Overlays -->
+        <div class="canvas-wrapper">
+            <canvas id="gameCanvas" width="600" height="600"></canvas>
 
-        <!-- UI Overlays -->
-        <div id="menu-overlay" class="overlay active">
-            <h1 class="glitch" data-text="NEON SNAKE">NEON SNAKE</h1>
-            <p>Rogue-Lite Edition</p>
-            <button id="start-btn" class="neon-btn">INITIALIZE</button>
-            <div class="controls-hint">
-                <p>Desktop: Arrow Keys / WASD</p>
-                <p>Mobile: Swipe or D-Pad</p>
+            <!-- UI Overlays -->
+            <div id="menu-overlay" class="overlay active">
+                <h1 class="glitch" data-text="NEON SNAKE">NEON SNAKE</h1>
+                <p>Rogue-Lite Edition</p>
+                <button id="start-btn" class="neon-btn">INITIALIZE</button>
+                <div class="controls-hint">
+                    <p>Desktop: Arrow Keys / WASD</p>
+                    <p>Mobile: Swipe or D-Pad</p>
+                </div>
+            </div>
+
+            <div id="game-over-overlay" class="overlay hidden">
+                <h1 class="red-glow">SYSTEM FAILURE</h1>
+                <p>Final Score: <span id="final-score">0</span></p>
+                <button id="restart-btn" class="neon-btn red-btn">REBOOT SYSTEM</button>
+            </div>
+
+            <div id="mutation-overlay" class="overlay hidden">
+                <h2 class="purple-glow">LEVEL UP!</h2>
+                <p>Select a Mutation:</p>
+                <div class="mutation-cards">
+                    <div class="mutation-card" id="mutation-1">
+                        <h3 id="mut1-title">Speed++</h3>
+                        <p id="mut1-desc">Increase base speed by 10%</p>
+                    </div>
+                    <div class="mutation-card" id="mutation-2">
+                        <h3 id="mut2-title">Shorter Tail</h3>
+                        <p id="mut2-desc">Remove 3 segments</p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div id="game-over-overlay" class="overlay hidden">
-            <h1 class="red-glow">SYSTEM FAILURE</h1>
-            <p>Final Score: <span id="final-score">0</span></p>
-            <button id="restart-btn" class="neon-btn red-btn">REBOOT SYSTEM</button>
-        </div>
-
-        <div id="mutation-overlay" class="overlay hidden">
-            <h2 class="purple-glow">LEVEL UP!</h2>
-            <p>Select a Mutation:</p>
-            <div class="mutation-cards">
-                <div class="mutation-card" id="mutation-1">
-                    <h3 id="mut1-title">Speed++</h3>
-                    <p id="mut1-desc">Increase base speed by 10%</p>
-                </div>
-                <div class="mutation-card" id="mutation-2">
-                    <h3 id="mut2-title">Shorter Tail</h3>
-                    <p id="mut2-desc">Remove 3 segments</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Controls (Hidden on larger screens) -->
+        <!-- Mobile Controls (Hidden on desktop) -->
         <div id="mobile-controls">
-            <button class="dpad-btn" id="dpad-up">▲</button>
+            <button class="dpad-btn" id="dpad-up" aria-label="Up">▲</button>
             <div class="dpad-middle">
-                <button class="dpad-btn" id="dpad-left">◀</button>
-                <button class="dpad-btn" id="dpad-right">▶</button>
+                <button class="dpad-btn" id="dpad-left" aria-label="Left">◀</button>
+                <button class="dpad-btn" id="dpad-right" aria-label="Right">▶</button>
             </div>
-            <button class="dpad-btn" id="dpad-down">▼</button>
+            <button class="dpad-btn" id="dpad-down" aria-label="Down">▼</button>
         </div>
     </div>
 
