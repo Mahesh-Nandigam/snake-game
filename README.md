@@ -1,4 +1,11 @@
-# Neon Snake (Rogue-Lite Edition)
+# Classic Retro Snake Arcade Game
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Website-brightgreen?style=for-the-badge&logo=vercel)](https://snake-game-7j4n-7ykzcaj2f-mahesh-nandigams-projects.vercel.app)
+
+**🔗 Live Production URL:** [https://snake-game-7j4n-7ykzcaj2f-mahesh-nandigams-projects.vercel.app](https://snake-game-7j4n-7ykzcaj2f-mahesh-nandigams-projects.vercel.app)
+
+---
+
 
 A rogue-lite twist on the classic Snake game built using vanilla JavaScript and HTML5 Canvas. It introduces level progression, rogue-lite mutation upgrades, custom canvas rendering, and procedural sound generation.
 
